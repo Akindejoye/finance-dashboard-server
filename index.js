@@ -8,9 +8,11 @@ import morgan from 'morgan';
 
 import KpiRoutes from "./routes/Kpi.js";
 import productRoutes from "./routes/product.js";
+import transactionRoutes from "./routes/transaction.js";
 import KPI from './models/KPI.js';
 import Product from "./models/Product.js";
-import { kpis, products } from './data/data.js';
+import Transaction from "./models/Transaction.js";
+import { kpis, products, transactions } from './data/data.js';
 
 /*Configuration */
 dotenv.config();
@@ -26,6 +28,7 @@ app.use(cors());
 /* ROUTES */
 app.use("/kpi", KpiRoutes);
 app.use("/product", productRoutes);
+app.use("/transaction", transactionRoutes);
 
 /* MONGOOSE SETUP */
 const PORT = process.env.PORT || 9000;
@@ -39,6 +42,6 @@ mongoose
 
     /* ADD DATA ONE TIME ONLY OR AS NEEDED */
     // await mongoose.connection.db.dropDatabase();
-    // Product.insertMany(products);
+    // Transaction.insertMany(transactions);
   })
   .catch((error) => console.log(`${error} did not connect`));
